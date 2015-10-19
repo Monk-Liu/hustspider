@@ -1,5 +1,5 @@
 import urllib.request,urllib.parse,http.cookiejar
-from config import USERNAME,PASSWORD,LOGINURL
+from config import USERNAME,PASSWORD,LOGINURL,INFOURL
 
 HEADERS = {'Accept': 'ext/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'Cache-Control': 'max-age=0', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36', 'Accept_language': 'en-US,en;q=0.8'}
 
@@ -9,6 +9,7 @@ class HustSpider(object):
         self._opener = urllib.request.build_opener()
         urllib.request.install_opener(self._opener)
         self.loginurl = LOGINURL
+        self.url = INFOURL 
         self._headers = HEADERS
         self.add_header()
         #其实没有必要用add_cookie 因为有用的cookie都在header里的session里了
@@ -48,6 +49,11 @@ class HustSpider(object):
         res = urllib.request.urlopen(url)
         html = res.read().decode("UTF-8")
         return html
+
+    def get_info(self,id):
+        url = self.url%id
+        return self.get(url)
+
 
 if __name__ == "__main__":
     p = HustSpider()

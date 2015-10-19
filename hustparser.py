@@ -6,7 +6,7 @@ class HustParser(object):
         self.soup = BeautifulSoup(html,'lxml')
         self._parser()
         self.soup = None
-        print(self.name,self.sid,self.sex)
+        print(self.sid)
 
     def get_input_by_name(self,name):
         input = self.soup.find('input',attrs={'name':name})
@@ -28,4 +28,8 @@ class HustParser(object):
         self.phone = self.get_input_by_name("STD_INFO_SJ")
         if not self.address:
             self.address = self.get_input_by_name("STD_INFO_HKD")
-        self.income = int(self.income)
+        if self.income:
+            try:
+                self.income = int(self.income)
+            except:
+                self.income = 11
