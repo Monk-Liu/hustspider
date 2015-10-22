@@ -1,4 +1,4 @@
-from config import DB_USER,DB_PASSWORD,DB_DATABASE
+from config import DB_USER,DB_PASSWORD,DB_DATABASE,SELECT,INSERT
 import mysql.connector
 
 class DB(object):
@@ -10,8 +10,8 @@ class DB(object):
         self.conn2 = mysql.connector.connect(user=DB_USER,
                     password=DB_PASSWORD,database=DB_DATABASE)
 
-        self.select_sql = ('select sid,idcard from student_info')
-        self.insert_sql = ('insert into net_useable values(null,%s,%s)')
+        self.select_sql = SELECT
+        self.insert_sql = INSERT
     
     def get_info(self):
         cur = self.conn1.cursor()
