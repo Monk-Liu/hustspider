@@ -6,7 +6,7 @@ import time
 import random
 
 
-q = Queue(10)
+q = Queue(50)
 threadlist = []
 
 class SpiderOperator(threading.Thread):
